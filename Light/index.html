@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Light </title>
+    </head>
+    <body>
+        <div id = "colour">
+            <h1 style="text-shadow: 1px 3px lightblue;">
+                Light.
+            </h1>
+        </div>
+
+        <p> Welcome to Light</p>
+        
+        <div id="format1">
+            <input type="checkbox" id="sprout1" class="hidden"> </input>
+            </br>
+            <label for="sprout1" class="toggle"> (press here if you achieved!) </label>
+            <div id="target1"></div>
+            <div class="seed1"></div>
+        </div>
+        <br>
+        <div id="format2">
+            <input type="checkbox" id="sprout2" class="hidden"> </input>
+            </br>
+            <label for="sprout2" class="toggle"> (press here if you achieved!) </label>
+            <div id="target2"></div>
+            <div class="seed2"></div>
+        </div>
+        <br>
+        <div id="format3">
+            <input type="checkbox" id="sprout3" class="hidden"> </input>
+            <br>
+            <label for="sprout3" class="toggle"> (press here if you achieved!) </label>
+            <div id="target3"></div>
+            <div class="seed3"></div>
+        </div>
+        <br>
+
+        <textarea class="input" id="value" placeholder="write your goal here!"></textarea>
+        <button class="button" id="goal">save goal</button>
+        <br>
+        <br>
+        
+        <div id="error"></div>
+        <br>
+        <br>
+
+        <label for="bar">day progress: </label>
+        <br>
+        <progress id="bar" value="0" max="100"></progress>
+        <div id = "percent"></div>
+
+        <input type="checkbox" id="night" class="hidden"> </input>
+        <div class="sun"></div>
+        <label for="night" class="toggle"> nightmode </label>
+
+    </body>
+    <script src="index.js"></script>
+</html>

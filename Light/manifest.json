@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    "name": "Light",
+    "version": "1.0.0",
+    "description": "Welcome to Light, a personal goal setter! ✨",
+    "background": {
+        "scripts": ["bg.js"],
+        "persistent": false
+    },
+    "icons": {
+        "128": "sprout.png"
+    },
+    "browser_action": {
+        "default_icon":"sprout.png",
+        "default_popup":"index.html"
+    },
+    "permissions": ["tabs","activeTab","declarativeContent", "storage"] 
+}
