@@ -1,8 +1,42 @@
 var goal = [];
+var goalDate = [];
+var currentDate = [];
 var check, textInput;
 var click = "here";
+var date = new Date();
+currentDate[0] = date.getDate();
+currentDate[1] = date.getMonth();
+currentDate[2] = date.getFullYear();
 
-checkDate();
+chrome.storage.sync.get("day", value => {
+    goalDate[0] = value.day;
+
+    if (goalDate[0] == null) {
+        document.getElementById("lastLogin").innerHTML = "NA/"
+    } else {
+        document.getElementById("lastLogin").innerHTML += goalDate[0] + "/";
+    }
+});
+chrome.storage.sync.get("month", value => {
+    goalDate[1] = value.month;
+
+    if (goalDate[1] == null) {
+        document.getElementById("lastLogin").innerHTML = "NA/"
+    } else {
+        document.getElementById("lastLogin").innerHTML += goalDate[1] + 1 + "/";
+    }
+});
+chrome.storage.sync.get("year", value => {
+    goalDate[2] = value.year;
+
+    if (goalDate[2] == null) {
+        document.getElementById("lastLogin").innerHTML = "NA"
+    } else {
+        document.getElementById("lastLogin").innerHTML += goalDate[2];
+    }
+});
+
+saveDate();
 getProg();
 
 chrome.storage.sync.get("goal1", value => {
@@ -13,6 +47,13 @@ chrome.storage.sync.get("goal1", value => {
     } else {
         document.getElementById("target1").innerHTML = goal[0];
     }
+
+    if((currentDate[0] != goalDate[0]) || (currentDate[1] != goalDate[1]) ||  (currentDate[2] != goalDate[2])) {
+        chrome.storage.sync.set({"goal1": null});
+        chrome.storage.sync.set({"goal2": null});
+        chrome.storage.sync.set({"goal3": null});
+    }
+
 });
 
 chrome.storage.sync.get("goal2", value => {
@@ -23,6 +64,12 @@ chrome.storage.sync.get("goal2", value => {
     } else {
         document.getElementById("target2").innerHTML = goal[1];
     }
+
+    if((currentDate[0] != goalDate[0]) || (currentDate[1] != goalDate[1]) ||  (currentDate[2] != goalDate[2])) {
+        chrome.storage.sync.set({"goal1": null});
+        chrome.storage.sync.set({"goal2": null});
+        chrome.storage.sync.set({"goal3": null});
+    }
 });
 
 chrome.storage.sync.get("goal3", value => {
@@ -32,6 +79,12 @@ chrome.storage.sync.get("goal3", value => {
         document.getElementById("target3").innerHTML = "no goal yet!";
     } else {
         document.getElementById("target3").innerHTML = goal[2];
+    }
+
+    if((currentDate[0] != goalDate[0]) || (currentDate[1] != goalDate[1]) ||  (currentDate[2] != goalDate[2])) {
+        chrome.storage.sync.set({"goal1": null});
+        chrome.storage.sync.set({"goal2": null});
+        chrome.storage.sync.set({"goal3": null});
     }
 });
 
@@ -87,6 +140,7 @@ window.onload = function () {
         }
 
         document.getElementById("value").value = "";
+
     });
 }
 
@@ -115,15 +169,11 @@ function clear(id) {
     document.getElementById(id).innerHTML = ""; 
 } 
 
-function checkDate() {
-    var date = new Date();
-    var hour = date.getHours();
-    
-    if (hour == 0) {
-        chrome.storage.sync.set({"goal1": null});
-        chrome.storage.sync.set({"goal2": null});
-        chrome.storage.sync.set({"goal3": null});
-    }
+function saveDate() {
+    chrome.storage.sync.set({"day": currentDate[0]});
+    chrome.storage.sync.set({"month": currentDate[1]});
+    chrome.storage.sync.set({"year": currentDate[2]});
+
 }
 
 function getProg() {
